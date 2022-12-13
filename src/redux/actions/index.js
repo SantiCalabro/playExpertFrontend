@@ -21,7 +21,7 @@ import {
 } from "../actions/actionNames";
 
 // const URL = "http://localhost:3001";
-const URL = "https://pf-back-production.up.railway.app";
+const URL = "playexpertback-production.up.railway.app";
 
 export function allProducts() {
   return function (dispatch) {

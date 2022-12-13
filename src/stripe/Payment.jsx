@@ -14,7 +14,7 @@ function Payment() {
   console.log("este es quant", claves);
 
   const handleClick = async e => {
-    e.preventDefault();
+    // e.preventDefault();
     const product = [];
     cart.map(e => {
       let line = {
@@ -30,13 +30,16 @@ function Payment() {
       products: product,
     };
     const stripe = await stripePromese;
-    const response = await fetch("http://localhost:3001/api/checkout", {
-      method: "POST",
-      body: JSON.stringify(productObj),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "playexpertback-production.up.railway.app/api/checkout",
+      {
+        method: "POST",
+        body: JSON.stringify(productObj),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const session = await response.json();
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
@@ -58,7 +61,7 @@ function Payment() {
           width: "700px",
         }}
         role="link"
-        onClick={e => handleClick(e)}
+        onClick={handleClick}
       >
         Start shopping
       </button>
